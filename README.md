@@ -8,7 +8,6 @@
 <h3 align="center">Rail Data</h3>
 
   <p align="center">
-    Simple program that works with database through interface written in Java
     <br />
   </p>
 </div>
@@ -22,24 +21,18 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
 
 ## About The Project
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Simple program that works with database through interface written in Java
 
 ### Built With
 
 * [![Java][Java-shield]][Java.com]
 * [![MySQL][MySQL-shield]][MySQL.com]
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ## License
 
