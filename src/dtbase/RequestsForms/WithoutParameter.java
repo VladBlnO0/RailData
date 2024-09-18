@@ -12,13 +12,84 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import static dtbase.statement.*;
 
-public class WithoutParametr extends JFrame{
+public class WithoutParameter extends JFrame{
 
     private JPanel sortPane;
     private JTable table1;
     private JButton showButton;
+    private void SortPayments() {
+        try {
+            Connection con = MyJDBC.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(sort_payments);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table1.getModel();
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            String[] colStringNames = {"ID", "Price", "Date", "Tariff"};
+            for (int i = 0; i < cols; i++) {
+                colName[i] = colStringNames[i];
+            }
+            model.setColumnIdentifiers(colName);
+            String idpayment, price, datePayment, idtariffs;
+            while (resultSet.next()) {
+                idpayment = resultSet.getString(1);
+                price = resultSet.getString(2);
+                datePayment = resultSet.getString(3);
+                idtariffs = resultSet.getString(4);
+                String[] row = {idpayment, price, datePayment, idtariffs};
+                model.addRow(row);
+            }
 
-    public WithoutParametr(int ch) {
+        } catch (Exception ex) {
+            System.out.println("" + ex);
+        }
+    }
+    private void ContractsMonth() {
+        try {
+            Connection con = MyJDBC.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(contract_month);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table1.getModel();
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            colName[0] = "Number of Contracts";
+            model.setColumnIdentifiers(colName);
+            String numContracts;
+            while (resultSet.next()) {
+                numContracts = resultSet.getString(1);
+                String[] row = {numContracts};
+                model.addRow(row);
+            }
+        } catch (Exception ex) {
+            System.out.println("" + ex);
+        }
+    }
+    private void CountContracts() {
+        try {
+            Connection con = MyJDBC.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(count_contract);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table1.getModel();
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            colName[0] = "Company";
+            colName[1] = "Number of Contracts";
+            model.setColumnIdentifiers(colName);
+            String nameClientCompany, numContracts;
+            while (resultSet.next()) {
+                nameClientCompany = resultSet.getString(1);
+                numContracts = resultSet.getString(2);
+                String[] row = {nameClientCompany, numContracts};
+                model.addRow(row);
+            }
+        } catch (Exception ex) {
+            System.out.println("" + ex);
+        }
+    }
+    public WithoutParameter(int ch) {
         setContentPane(sortPane);
         setTitle("Get Info");
         setSize(400,400);
@@ -30,77 +101,13 @@ public class WithoutParametr extends JFrame{
                 table1.setModel(new DefaultTableModel());
                 switch (ch) {
                     case 0:
-                        try {
-                            Connection con = MyJDBC.getConnection();
-                            Statement statement = con.createStatement();
-                            ResultSet resultSet = statement.executeQuery(sort_payments);
-                            ResultSetMetaData rsmd = resultSet.getMetaData();
-                            DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                            int cols = rsmd.getColumnCount();
-                            String[] colName = new String[cols];
-                            String[] colStringNames = {"ID", "Price", "Date", "Tariff"};
-                            for (int i = 0; i < cols; i++) {
-                                colName[i] = colStringNames[i];
-                            }
-                            model.setColumnIdentifiers(colName);
-                            String idpayment, price, datePayment, idtariffs;
-                            while (resultSet.next()) {
-                                idpayment = resultSet.getString(1);
-                                price = resultSet.getString(2);
-                                datePayment = resultSet.getString(3);
-                                idtariffs = resultSet.getString(4);
-                                String[] row = {idpayment, price, datePayment, idtariffs};
-                                model.addRow(row);
-                            }
-
-                        } catch (Exception ex) {
-                            System.out.println("" + ex);
-                        }
+                        SortPayments();
                         break;
                     case 3:
-                        try {
-                            Connection con = MyJDBC.getConnection();
-                            Statement statement = con.createStatement();
-                            ResultSet resultSet = statement.executeQuery(contract_month);
-                            ResultSetMetaData rsmd = resultSet.getMetaData();
-                            DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                            int cols = rsmd.getColumnCount();
-                            String[] colName = new String[cols];
-                            colName[0] = "Number of Contracts";
-                            model.setColumnIdentifiers(colName);
-                            String numContracts;
-                            while (resultSet.next()) {
-                                numContracts = resultSet.getString(1);
-                                String[] row = {numContracts};
-                                model.addRow(row);
-                            }
-                        } catch (Exception ex) {
-                            System.out.println("" + ex);
-                        }
+                        ContractsMonth();
                         break;
                     case 4:
-                        try {
-                            Connection con = MyJDBC.getConnection();
-                            Statement statement = con.createStatement();
-                            ResultSet resultSet = statement.executeQuery(count_contract);
-                            ResultSetMetaData rsmd = resultSet.getMetaData();
-                            DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                            int cols = rsmd.getColumnCount();
-                            String[] colName = new String[cols];
-                            colName[0] = "Company";
-                            colName[1] = "Number of Contracts";
-                            model.setColumnIdentifiers(colName);
-                            String nameClientCompany, numContracts;
-                            while (resultSet.next()) {
-                                nameClientCompany = resultSet.getString(1);
-                                numContracts = resultSet.getString(2);
-                                String[] row = {nameClientCompany, numContracts};
-                                model.addRow(row);
-                            }
-
-                        } catch (Exception ex) {
-                            System.out.println("" + ex);
-                        }
+                        CountContracts();
                         break;
                     case 6:
                         try {
