@@ -14,7 +14,7 @@
 
 ## About The Project
 
-Simple program that works with database through interface written in Java
+Simple program that works with database through GUI written in JavaForms
 
 ### Built With
 
