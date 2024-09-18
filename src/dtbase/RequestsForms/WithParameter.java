@@ -13,7 +13,7 @@ import java.sql.ResultSetMetaData;
 
 import static dtbase.statement.*;
 
-public class WithParametr extends JFrame{
+public class WithParameter extends JFrame{
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
@@ -21,7 +21,7 @@ public class WithParametr extends JFrame{
     private JComboBox comboBox1;
     private JComboBox comboBox2;
 
-    public WithParametr(int ch) {
+    public WithParameter(int ch) {
         setContentPane(panel1);
         setTitle("Get Info");
         setSize(600,400);

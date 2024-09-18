@@ -27,11 +27,11 @@ public class RequestsForm extends JFrame{
                 int ch = comboBox1.getSelectedIndex();
                 switch (ch) {
                     case 0, 3, 4, 6, 7, 8:
-                        WithoutParametr formWP0 = new WithoutParametr(ch);
+                        WithoutParameter formWP0 = new WithoutParameter(ch);
                         formWP0.setVisible(true);
                         break;
                     case 1, 2, 5:
-                        WithParametr formWP1 = new WithParametr(ch);
+                        WithParameter formWP1 = new WithParameter(ch);
                         formWP1.setVisible(true);
                         break;
                 }
